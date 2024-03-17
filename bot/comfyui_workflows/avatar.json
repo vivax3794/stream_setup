@@ -1,0 +1,135 @@
+{
+  "1": {
+    "inputs": {
+      "seed": 877357814220292,
+      "steps": 6,
+      "cfg": 1.5,
+      "sampler_name": "lcm",
+      "scheduler": "karras",
+      "denoise": 1,
+      "preview_method": "auto",
+      "vae_decode": "true",
+      "model": [
+        "4",
+        0
+      ],
+      "positive": [
+        "2",
+        1
+      ],
+      "negative": [
+        "2",
+        2
+      ],
+      "latent_image": [
+        "2",
+        3
+      ],
+      "optional_vae": [
+        "2",
+        4
+      ]
+    },
+    "class_type": "KSampler (Efficient)",
+    "_meta": {
+      "title": "KSampler (Efficient)"
+    }
+  },
+  "2": {
+    "inputs": {
+      "ckpt_name": "photon_v1.safetensors",
+      "vae_name": "Baked VAE",
+      "clip_skip": -1,
+      "lora_name": "lcm.safetensors",
+      "lora_model_strength": 1,
+      "lora_clip_strength": 1,
+      "positive": [
+        "9",
+        0
+      ],
+      "negative": "(worst quality, bad quality, normal quality:2), nsfw, nude, naked",
+      "token_normalization": "none",
+      "weight_interpretation": "comfy",
+      "empty_latent_width": 320,
+      "empty_latent_height": 320,
+      "batch_size": 1
+    },
+    "class_type": "Efficient Loader",
+    "_meta": {
+      "title": "Efficient Loader"
+    }
+  },
+  "4": {
+    "inputs": {
+      "sampling": "lcm",
+      "zsnr": false,
+      "model": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingDiscrete",
+    "_meta": {
+      "title": "ModelSamplingDiscrete"
+    }
+  },
+  "5": {
+    "inputs": {
+      "transparency": true,
+      "model": "u2net",
+      "post_processing": false,
+      "only_mask": false,
+      "alpha_matting": false,
+      "alpha_matting_foreground_threshold": 240,
+      "alpha_matting_background_threshold": 10,
+      "alpha_matting_erode_size": 10,
+      "background_color": "none",
+      "images": [
+        "1",
+        5
+      ]
+    },
+    "class_type": "Image Rembg (Remove Background)",
+    "_meta": {
+      "title": "Image Rembg (Remove Background)"
+    }
+  },
+  "8": {
+    "inputs": {
+      "output_path": "avatars",
+      "filename_prefix": "ComfyUI",
+      "filename_delimiter": "_",
+      "filename_number_padding": 4,
+      "filename_number_start": "false",
+      "extension": "png",
+      "quality": 100,
+      "lossless_webp": "false",
+      "overwrite_mode": "false",
+      "show_history": "false",
+      "show_history_by_prefix": "true",
+      "embed_workflow": "true",
+      "show_previews": "true",
+      "images": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "Image Save",
+    "_meta": {
+      "title": "Image Save"
+    }
+  },
+  "9": {
+    "inputs": {
+      "stringA": "",
+      "stringB": "full body, white background,realistic, photorealistic",
+      "stringC": "",
+      "stringD": "",
+      "delimiter": ", "
+    },
+    "class_type": "string concat",
+    "_meta": {
+      "title": "string concat"
+    }
+  }
+}

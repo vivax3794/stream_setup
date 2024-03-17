@@ -1,0 +1,68 @@
+services:
+  bot:
+    build: ./bot
+    tty: true
+    environment:
+      - TOKEN=$TWITCH_TOKEN
+      - CHANNEL=$TWITCH_CHANNEL
+      - CLIENT_ID=$TWITCH_CLIENT_ID
+      - CLIENT_SECRET=$TWITCH_CLIENT_SECRET
+      - OAUTH=$TWITCH_OAUTH
+
+      - XDG_RUNTIME_DIR=/tmp/
+      - WAYLAND_DISPLAY=${WAYLAND_DISPLAY}
+    
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - type: bind
+        source: ${XDG_RUNTIME_DIR}/${WAYLAND_DISPLAY}
+        target: /tmp/${WAYLAND_DISPLAY}
+      - images:/images
+
+  comfyui:
+    build:
+      context: .
+      dockerfile: ComfyUi.Dockerfile
+    tty: true
+    expose:
+      - "8188"
+    ports:
+      - "8188:8188"
+
+    volumes:
+      - ./comfyui_models:/app/models
+      - images:/app/output/
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  file_server:
+    image: halverneus/static-file-server
+    ports:
+      - "8080:8080"
+    volumes:
+      - images:/web
+
+  overlay:
+    build: ./overlay
+    tty: true
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+
+    depends_on:
+      - bot
+
+
+
+
+volumes:
+  images:

@@ -1,0 +1,4 @@
+twitchio
+loguru
+httpx
+websockets
