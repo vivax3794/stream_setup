@@ -1,0 +1,428 @@
+{
+  "last_node_id": 17,
+  "last_link_id": 7,
+  "nodes": [
+    {
+      "id": 15,
+      "type": "Efficient Loader",
+      "pos": [
+        312,
+        276
+      ],
+      "size": [
+        400,
+        462
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "lora_stack",
+          "type": "LORA_STACK",
+          "link": null
+        },
+        {
+          "name": "cnet_stack",
+          "type": "CONTROL_NET_STACK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            1
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "CONDITIONING+",
+          "type": "CONDITIONING",
+          "links": [
+            2
+          ],
+          "shape": 3,
+          "slot_index": 1
+        },
+        {
+          "name": "CONDITIONING-",
+          "type": "CONDITIONING",
+          "links": [
+            3
+          ],
+          "shape": 3,
+          "slot_index": 2
+        },
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            4
+          ],
+          "shape": 3,
+          "slot_index": 3
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            5
+          ],
+          "shape": 3,
+          "slot_index": 4
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "DEPENDENCIES",
+          "type": "DEPENDENCIES",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Efficient Loader"
+      },
+      "widgets_values": [
+        "anime_v13.safetensors",
+        "Baked VAE",
+        -1,
+        "None",
+        1,
+        1,
+        "1girl",
+        "nsfw, bad quality",
+        "none",
+        "comfy",
+        512,
+        512,
+        1
+      ],
+      "color": "#332233",
+      "bgcolor": "#553355",
+      "shape": 1
+    },
+    {
+      "id": 16,
+      "type": "VIV_Subgraph_Inputs",
+      "pos": [
+        544,
+        185
+      ],
+      "size": {
+        "0": 159.60000610351562,
+        "1": 46
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "INT.seed.72",
+          "type": "INT",
+          "links": [
+            6
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "*",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VIV_Subgraph_Inputs"
+      }
+    },
+    {
+      "id": 14,
+      "type": "KSampler (Efficient)",
+      "pos": [
+        783,
+        274
+      ],
+      "size": [
+        325,
+        350
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 2
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 3
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 4
+        },
+        {
+          "name": "optional_vae",
+          "type": "VAE",
+          "link": 5
+        },
+        {
+          "name": "script",
+          "type": "SCRIPT",
+          "link": null
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": 6,
+          "widget": {
+            "name": "seed"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "CONDITIONING+",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "CONDITIONING-",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            7
+          ],
+          "shape": 3,
+          "slot_index": 5
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler (Efficient)"
+      },
+      "widgets_values": [
+        -1,
+        null,
+        20,
+        7,
+        "euler",
+        "normal",
+        1,
+        "auto",
+        "true"
+      ],
+      "color": "#223333",
+      "bgcolor": "#335555",
+      "shape": 1
+    },
+    {
+      "id": 17,
+      "type": "VIV_Subgraph_Outputs",
+      "pos": [
+        1158,
+        266
+      ],
+      "size": {
+        "0": 168,
+        "1": 46
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "IMAGE.IMAGE.92",
+          "type": "IMAGE",
+          "link": 7
+        },
+        {
+          "name": "*",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VIV_Subgraph_Outputs"
+      }
+    }
+  ],
+  "links": [
+    [
+      1,
+      15,
+      0,
+      14,
+      0,
+      "MODEL"
+    ],
+    [
+      2,
+      15,
+      1,
+      14,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      3,
+      15,
+      2,
+      14,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      4,
+      15,
+      3,
+      14,
+      3,
+      "LATENT"
+    ],
+    [
+      5,
+      15,
+      4,
+      14,
+      4,
+      "VAE"
+    ],
+    [
+      6,
+      16,
+      0,
+      14,
+      6,
+      "INT"
+    ],
+    [
+      7,
+      14,
+      5,
+      17,
+      0,
+      "*"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1,
+      "offset": {
+        "0": -257.54302978515625,
+        "1": 289.5733337402344
+      }
+    }
+  },
+  "version": 0.4,
+  "api_prompt": {
+    "14": {
+      "inputs": {
+        "seed": [
+          "16",
+          0
+        ],
+        "steps": 20,
+        "cfg": 7,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 1,
+        "preview_method": "auto",
+        "vae_decode": "true",
+        "model": [
+          "15",
+          0
+        ],
+        "positive": [
+          "15",
+          1
+        ],
+        "negative": [
+          "15",
+          2
+        ],
+        "latent_image": [
+          "15",
+          3
+        ],
+        "optional_vae": [
+          "15",
+          4
+        ]
+      },
+      "class_type": "KSampler (Efficient)"
+    },
+    "15": {
+      "inputs": {
+        "ckpt_name": "anime_v13.safetensors",
+        "vae_name": "Baked VAE",
+        "clip_skip": -1,
+        "lora_name": "None",
+        "lora_model_strength": 1,
+        "lora_clip_strength": 1,
+        "positive": "1girl",
+        "negative": "nsfw, bad quality",
+        "token_normalization": "none",
+        "weight_interpretation": "comfy",
+        "empty_latent_width": 512,
+        "empty_latent_height": 512,
+        "batch_size": 1
+      },
+      "class_type": "Efficient Loader"
+    },
+    "16": {
+      "inputs": {},
+      "class_type": "VIV_Subgraph_Inputs"
+    },
+    "17": {
+      "inputs": {
+        "IMAGE.IMAGE.92": [
+          "14",
+          5
+        ]
+      },
+      "class_type": "VIV_Subgraph_Outputs"
+    }
+  }
+}

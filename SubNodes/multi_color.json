@@ -1,0 +1,1144 @@
+{
+  "last_node_id": 44,
+  "last_link_id": 108,
+  "nodes": [
+    {
+      "id": 11,
+      "type": "VIV_Subgraph_Outputs",
+      "pos": [
+        1895,
+        234
+      ],
+      "size": {
+        "0": 202.19332885742188,
+        "1": 46
+      },
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "IMAGE.IMAGE.12",
+          "type": "IMAGE",
+          "link": 12
+        },
+        {
+          "name": "*",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VIV_Subgraph_Outputs"
+      }
+    },
+    {
+      "id": 13,
+      "type": "CLIPTextEncode",
+      "pos": [
+        557,
+        473
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 90
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            37
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "Negative",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "nsfw"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "KSampler (Efficient)",
+      "pos": [
+        1403,
+        225
+      ],
+      "size": {
+        "0": 448.05999755859375,
+        "1": 354.9578857421875
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 88
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 9
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 37,
+          "slot_index": 2
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 82
+        },
+        {
+          "name": "optional_vae",
+          "type": "VAE",
+          "link": 91
+        },
+        {
+          "name": "script",
+          "type": "SCRIPT",
+          "link": null
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": 86,
+          "widget": {
+            "name": "seed"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "CONDITIONING+",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "CONDITIONING-",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            12
+          ],
+          "shape": 3,
+          "slot_index": 5
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler (Efficient)"
+      },
+      "widgets_values": [
+        546579265610191,
+        null,
+        20,
+        4,
+        "euler",
+        "normal",
+        1,
+        "auto",
+        "true"
+      ],
+      "color": "#223333",
+      "bgcolor": "#335555",
+      "shape": 1
+    },
+    {
+      "id": 34,
+      "type": "RepeatLatentBatch",
+      "pos": [
+        1009,
+        261
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 83
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            82
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RepeatLatentBatch"
+      },
+      "widgets_values": [
+        4
+      ]
+    },
+    {
+      "id": 35,
+      "type": "VIV_Default",
+      "pos": [
+        763,
+        269
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default",
+          "type": "LATENT",
+          "link": 84
+        },
+        {
+          "name": "inp",
+          "type": "LATENT",
+          "link": 100
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "LATENT",
+          "links": [
+            83
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "Latent",
+      "properties": {
+        "Node name for S&R": "VIV_Default"
+      }
+    },
+    {
+      "id": 38,
+      "type": "VIV_Default",
+      "pos": [
+        445,
+        376
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default",
+          "type": "INT",
+          "link": 108
+        },
+        {
+          "name": "inp",
+          "type": "INT",
+          "link": 96
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "INT",
+          "links": [
+            86
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "Seed",
+      "properties": {
+        "Node name for S&R": "VIV_Default"
+      }
+    },
+    {
+      "id": 41,
+      "type": "VIV_Default",
+      "pos": [
+        440,
+        -28
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default",
+          "type": "MODEL",
+          "link": 97
+        },
+        {
+          "name": "inp",
+          "type": "MODEL",
+          "link": 107
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "MODEL",
+          "links": [
+            88
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "Model",
+      "properties": {
+        "Node name for S&R": "VIV_Default"
+      }
+    },
+    {
+      "id": 40,
+      "type": "VIV_Default",
+      "pos": [
+        440,
+        62
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default",
+          "type": "CLIP",
+          "link": 98
+        },
+        {
+          "name": "inp",
+          "type": "CLIP",
+          "link": 93
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "CLIP",
+          "links": [
+            89,
+            90
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VIV_Default"
+      }
+    },
+    {
+      "id": 39,
+      "type": "VIV_Default",
+      "pos": [
+        440,
+        152
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default",
+          "type": "VAE",
+          "link": 99
+        },
+        {
+          "name": "inp",
+          "type": "VAE",
+          "link": 94
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "VAE",
+          "links": [
+            91
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VIV_Default"
+      }
+    },
+    {
+      "id": 42,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        36,
+        -10
+      ],
+      "size": {
+        "0": 315,
+        "1": 98
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            97
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            98
+          ],
+          "shape": 3,
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            99
+          ],
+          "shape": 3,
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "anime_v13.safetensors"
+      ]
+    },
+    {
+      "id": 12,
+      "type": "EmptyLatentImage",
+      "pos": [
+        747,
+        107
+      ],
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            84
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        512,
+        512,
+        1
+      ]
+    },
+    {
+      "id": 33,
+      "type": "VIV_Subgraph_Inputs",
+      "pos": [
+        -25,
+        206
+      ],
+      "size": {
+        "0": 161.1999969482422,
+        "1": 166
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MODEL.inp.90",
+          "type": "MODEL",
+          "links": [
+            107
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP.inp.98",
+          "type": "CLIP",
+          "links": [
+            93
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE.inp.20",
+          "type": "VAE",
+          "links": [
+            94
+          ],
+          "slot_index": 2
+        },
+        {
+          "name": "STRING.pre_text.33",
+          "type": "STRING",
+          "links": [
+            95
+          ],
+          "slot_index": 3
+        },
+        {
+          "name": "INT.inp.67",
+          "type": "INT",
+          "links": [
+            96
+          ],
+          "slot_index": 4
+        },
+        {
+          "name": "LATENT.inp.20",
+          "type": "LATENT",
+          "links": [
+            100
+          ],
+          "slot_index": 5
+        },
+        {
+          "name": "*..81",
+          "type": "*",
+          "links": [],
+          "slot_index": 6
+        },
+        {
+          "name": "*",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VIV_Subgraph_Inputs"
+      }
+    },
+    {
+      "id": 7,
+      "type": "BatchPromptSchedule",
+      "pos": [
+        967,
+        380
+      ],
+      "size": {
+        "0": 400,
+        "1": 318
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 89
+        },
+        {
+          "name": "pre_text",
+          "type": "STRING",
+          "link": 95,
+          "widget": {
+            "name": "pre_text"
+          },
+          "slot_index": 1,
+          "label": "positive"
+        },
+        {
+          "name": "app_text",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "app_text"
+          }
+        },
+        {
+          "name": "pw_a",
+          "type": "FLOAT",
+          "link": null,
+          "widget": {
+            "name": "pw_a"
+          }
+        },
+        {
+          "name": "pw_b",
+          "type": "FLOAT",
+          "link": null,
+          "widget": {
+            "name": "pw_b"
+          }
+        },
+        {
+          "name": "pw_c",
+          "type": "FLOAT",
+          "link": null,
+          "widget": {
+            "name": "pw_c"
+          }
+        },
+        {
+          "name": "pw_d",
+          "type": "FLOAT",
+          "link": null,
+          "widget": {
+            "name": "pw_d"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "POS",
+          "type": "CONDITIONING",
+          "links": [
+            9
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "NEG",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BatchPromptSchedule"
+      },
+      "widgets_values": [
+        "\"0\" :\"blue\",\n\"1\" :\"green\",\n\"2\" :\"red\",\n\"3\" :\"yellow\"\n",
+        4,
+        false,
+        "",
+        "",
+        0,
+        4,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 44,
+      "type": "RandomInt",
+      "pos": [
+        -112,
+        468
+      ],
+      "size": {
+        "0": 315,
+        "1": 102
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            108
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RandomInt"
+      },
+      "widgets_values": [
+        0,
+        100000
+      ]
+    }
+  ],
+  "links": [
+    [
+      9,
+      7,
+      0,
+      5,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      12,
+      5,
+      5,
+      11,
+      0,
+      "*"
+    ],
+    [
+      37,
+      13,
+      0,
+      5,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      82,
+      34,
+      0,
+      5,
+      3,
+      "LATENT"
+    ],
+    [
+      83,
+      35,
+      0,
+      34,
+      0,
+      "LATENT"
+    ],
+    [
+      84,
+      12,
+      0,
+      35,
+      0,
+      "LATENT"
+    ],
+    [
+      86,
+      38,
+      0,
+      5,
+      6,
+      "INT"
+    ],
+    [
+      88,
+      41,
+      0,
+      5,
+      0,
+      "MODEL"
+    ],
+    [
+      89,
+      40,
+      0,
+      7,
+      0,
+      "CLIP"
+    ],
+    [
+      90,
+      40,
+      0,
+      13,
+      0,
+      "CLIP"
+    ],
+    [
+      91,
+      39,
+      0,
+      5,
+      4,
+      "VAE"
+    ],
+    [
+      93,
+      33,
+      1,
+      40,
+      1,
+      "CLIP"
+    ],
+    [
+      94,
+      33,
+      2,
+      39,
+      1,
+      "VAE"
+    ],
+    [
+      95,
+      33,
+      3,
+      7,
+      1,
+      "STRING"
+    ],
+    [
+      96,
+      33,
+      4,
+      38,
+      1,
+      "INT"
+    ],
+    [
+      97,
+      42,
+      0,
+      41,
+      0,
+      "MODEL"
+    ],
+    [
+      98,
+      42,
+      1,
+      40,
+      0,
+      "CLIP"
+    ],
+    [
+      99,
+      42,
+      2,
+      39,
+      0,
+      "VAE"
+    ],
+    [
+      100,
+      33,
+      5,
+      35,
+      1,
+      "LATENT"
+    ],
+    [
+      107,
+      33,
+      0,
+      41,
+      1,
+      "*"
+    ],
+    [
+      108,
+      44,
+      0,
+      38,
+      0,
+      "INT"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1.2100000000000002,
+      "offset": {
+        "0": 220.88669883690036,
+        "1": -44.93819844070062
+      }
+    }
+  },
+  "version": 0.4,
+  "api_prompt": {
+    "5": {
+      "inputs": {
+        "seed": [
+          "38",
+          0
+        ],
+        "steps": 20,
+        "cfg": 4,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 1,
+        "preview_method": "auto",
+        "vae_decode": "true",
+        "model": [
+          "41",
+          0
+        ],
+        "positive": [
+          "7",
+          0
+        ],
+        "negative": [
+          "13",
+          0
+        ],
+        "latent_image": [
+          "34",
+          0
+        ],
+        "optional_vae": [
+          "39",
+          0
+        ]
+      },
+      "class_type": "KSampler (Efficient)",
+      "_meta": {
+        "title": "KSampler (Efficient)"
+      }
+    },
+    "7": {
+      "inputs": {
+        "text": "\"0\" :\"blue\",\n\"1\" :\"green\",\n\"2\" :\"red\",\n\"3\" :\"yellow\"\n",
+        "max_frames": 4,
+        "print_output": false,
+        "pre_text": [
+          "33",
+          3
+        ],
+        "start_frame": 0,
+        "end_frame": 4,
+        "clip": [
+          "40",
+          0
+        ]
+      },
+      "class_type": "BatchPromptSchedule",
+      "_meta": {
+        "title": "Batch Prompt Schedule 📅🅕🅝"
+      }
+    },
+    "11": {
+      "inputs": {
+        "IMAGE.IMAGE.12": [
+          "5",
+          5
+        ]
+      },
+      "class_type": "VIV_Subgraph_Outputs",
+      "_meta": {
+        "title": "VIV_Subgraph_Outputs"
+      }
+    },
+    "12": {
+      "inputs": {
+        "width": 512,
+        "height": 512,
+        "batch_size": 1
+      },
+      "class_type": "EmptyLatentImage",
+      "_meta": {
+        "title": "Empty Latent Image"
+      }
+    },
+    "13": {
+      "inputs": {
+        "text": "nsfw",
+        "clip": [
+          "40",
+          0
+        ]
+      },
+      "class_type": "CLIPTextEncode",
+      "_meta": {
+        "title": "Negative"
+      }
+    },
+    "33": {
+      "inputs": {},
+      "class_type": "VIV_Subgraph_Inputs",
+      "_meta": {
+        "title": "VIV_Subgraph_Inputs"
+      }
+    },
+    "34": {
+      "inputs": {
+        "amount": 4,
+        "samples": [
+          "35",
+          0
+        ]
+      },
+      "class_type": "RepeatLatentBatch",
+      "_meta": {
+        "title": "Repeat Latent Batch"
+      }
+    },
+    "35": {
+      "inputs": {
+        "default": [
+          "12",
+          0
+        ],
+        "inp": [
+          "33",
+          5
+        ]
+      },
+      "class_type": "VIV_Default",
+      "_meta": {
+        "title": "Latent"
+      }
+    },
+    "38": {
+      "inputs": {
+        "default": [
+          "44",
+          0
+        ],
+        "inp": [
+          "33",
+          4
+        ]
+      },
+      "class_type": "VIV_Default",
+      "_meta": {
+        "title": "Seed"
+      }
+    },
+    "39": {
+      "inputs": {
+        "default": [
+          "42",
+          2
+        ],
+        "inp": [
+          "33",
+          2
+        ]
+      },
+      "class_type": "VIV_Default",
+      "_meta": {
+        "title": "VIV_Default"
+      }
+    },
+    "40": {
+      "inputs": {
+        "default": [
+          "42",
+          1
+        ],
+        "inp": [
+          "33",
+          1
+        ]
+      },
+      "class_type": "VIV_Default",
+      "_meta": {
+        "title": "VIV_Default"
+      }
+    },
+    "41": {
+      "inputs": {
+        "default": [
+          "42",
+          0
+        ],
+        "inp": [
+          "33",
+          0
+        ]
+      },
+      "class_type": "VIV_Default",
+      "_meta": {
+        "title": "Model"
+      }
+    },
+    "42": {
+      "inputs": {
+        "ckpt_name": "anime_v13.safetensors"
+      },
+      "class_type": "CheckpointLoaderSimple",
+      "_meta": {
+        "title": "Load Checkpoint"
+      }
+    },
+    "44": {
+      "inputs": {
+        "min": 0,
+        "max": 100000
+      },
+      "class_type": "RandomInt",
+      "_meta": {
+        "title": "Random Int"
+      }
+    }
+  }
+}
